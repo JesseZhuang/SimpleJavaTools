@@ -82,7 +82,7 @@ public class ReadGcal {
 		 * the classpath
 		 */
 		InputStream in = ReadGcal.class.getResourceAsStream(
-				"/resources/client_secret_madrona_officenotes.json");
+				"/resources/client_secret.json");
 		GoogleClientSecrets clientSecrets = GoogleClientSecrets
 				.load(JSON_FACTORY, new InputStreamReader(in));
 

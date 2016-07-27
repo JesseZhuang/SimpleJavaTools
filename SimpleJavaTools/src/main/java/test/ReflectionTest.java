@@ -16,7 +16,7 @@ import java.util.Map;
  * exit.
  */
 @SuppressWarnings("unchecked")
-public class Test {
+public class ReflectionTest {
 
 	private final static String SUCCESS = "Congrats! All tests passed.";
 
