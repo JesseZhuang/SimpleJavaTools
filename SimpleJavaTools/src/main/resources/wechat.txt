@@ -1,0 +1,1826 @@
+————— 2016-07-23 —————
+
+驰 15:51
+
+我有个疑问，为什么没有用Java专门做数据处理，不是hadoop也是Java代码写的吗
+
+ROSS 白 15:52
+
+这是驰老师转发的有关 data science 的文章[ThumbsUp]
+
+尧skywalker 15:52
+
+我感觉数据处理用oo的语言不太合适。。
+
+尧skywalker 15:54
+
+第一你不需要对象这个东西吧，只是纯粹的数据，架一层对象你还增加了内存开销
+
+驰 15:54
+
+C 也是OO语言，也很适合处理数据啊，Caffe库也是处理大数据的深度学习库
+
+尧skywalker 15:55
+
+处理数据时你要打包成对象么？
+
+驰 15:55
+
+我们想想为什么我们需要对象吧
+
+驰 15:56
+
+我指的是数据结构的对象。。。
+
+尧skywalker 15:56
+
+c＋＋我感觉是一门多范式语言，至少你跑一个函数不需要打包成对象里的方法对吧？
+
+尧skywalker 15:56
+
+java你哪怕跑个hello world都得声明个对象
+
+尧skywalker 15:56
+
+另外我感觉c加加的性能有优势。。。
+
+尧skywalker 15:57
+
+比如 大数据常用的map reduce
+
+尧skywalker 15:57
+
+java直到java 8 的stream才出现
+
+驰 15:57
+
+数据科学分成数据分析 机器学习。机器学习模型不是也是一样需要OO吗？还是不太懂为什么Java就不行了
+
+尧skywalker 15:57
+
+而且性能还很成疑
+
+尧skywalker 15:58
+
+机器学习需要OO么。。？
+
+尧skywalker 15:58
+
+我学机器学习时教授都让在matlab上跑的啊，。
+
+驰 15:58
+
+神经网络
+
+驰 15:58
+
+我也是
+
+驰 15:59
+
+神经网络那一系列模型在Caffe还有其他软件就是很自然的OO，可以继承父类的函数等等
+
+尧skywalker 15:59
+
+神经网络我感觉更多的是迭代运算吧。。。
+
+尧skywalker 15:59
+
+我感觉函数式编程更适合啊。。
+
+尧skywalker 16:00
+
+但是我感觉这东西打包成OO没啥意义的样子。。。
+
+尧skywalker 16:00
+
+你本质就是一个大数组＋一堆函数呗，。。
+
+驰 16:00
+
+不只是神经网络，因为所以机器学习都是优化的问题，而里面“学习”的本质就是迭代优化
+
+驰 16:00
+
+而且这么说吧
+
+驰 16:01
+
+即使觉得OO没意义对于机器学习，那么实际上增多一门抽象，对于性能的影响多大呢？
+
+尧skywalker 16:01
+
+oo是有内存开销的
+
+驰 16:01
+
+我们最开始需要oo，其实就是和需要数据结构一样道理，把数据和相应的操作捆绑起来，方便我们的编程
+
+驰 16:01
+
+是有
+
+尧skywalker 16:01
+
+而且你具体把什么打包成对象呢？
+
+驰 16:01
+
+现在的问题是
+
+驰 16:01
+
+这个内存的开销
+
+驰 16:01
+
+有多大
+
+尧skywalker 16:02
+
+具体忘了。。好像有讲java中一个对象它的管理信息需要占多少的
+
+驰 16:02
+
+刚才机器学习的模型就是打包成对象的样子，当然你也可以根据不一样的数据类型打包成对象，有相应的操作也ok啊
+
+驰 16:02
+
+我也查一下这个
+
+驰 16:03
+
+这个话题非常有趣，我挺想知道有多大的影响
+
+尧skywalker 16:03
+
+所以其实你打包的唯一用处就是绑定数据结构和操作？。。。
+
+尧skywalker 16:03
+
+如果我印象没错，机器学习的数据基本都是矩阵吧。。。
+
+尧skywalker 16:03
+
+维度＋样本个数
+
+驰 16:04
+
+可以表示成矩阵，但不一定是矩阵
+
+驰 16:04
+
+变成成矩阵只是对于我们来说处理方便
+
+驰 16:04
+
+譬如图吧
+
+驰 16:04
+
+也是数据
+
+尧skywalker 16:04
+
+不止方便吧，你会获得性能上的优势吧？
+
+尧skywalker 16:05
+
+我印象matlab用for循环的速度比用矩阵操作慢的不是一星半点
+
+驰 16:05
+
+你可以邻接矩阵，也可以是邻接的链表
+
+驰 16:05
+
+因为那是机器后面做的性能优化
+
+驰 16:05
+
+这和theano，gpu都是一个道理
+
+尧skywalker 16:05
+
+对啊，你看
+
+尧skywalker 16:05
+
+你本来可以用原生的，符合内存分布模式的数组
+
+尧skywalker 16:06
+
+现在你却要引入链表
+
+驰 16:06
+
+我们对数据是不是有不同的操作
+
+驰 16:07
+
+我们是不是根据不同的问题定数据结构？
+
+驰 16:07
+
+而且刚才提到的是为什么C 的oo就可以Java的oo就不可以
+
+尧skywalker 16:08
+
+我觉得OO本来就不适合。。。
+
+尧skywalker 16:08
+
+包括c加加
+
+驰 16:09
+
+oo本身如果对数据处理性能有很大影响不用是应该的，然而如果不是的话，为什么不合适呢?只是因为多了一层抽象，我们感觉上不好就直接说不合适吗？
+
+ROSS 白 16:09
+
+数据操作的目的就是做数据移动
+
+尧skywalker 16:09
+
+但是事实就是你有性能影响
+
+尧skywalker 16:12
+
+我觉得这问题得请大神来回答。。。我感觉就是数据处理，OO不如函数式。。
+
+驰 16:12
+
+所以我才说查查这影响有多大呗。如果这的很明显，我完全同意。可惜悉达超不在，他在这方面最有发言权
+
+驰 16:13
+
+回头要再补补scala和haskell的视频。我现在也不是很清晰，functional programming和map reduce那种的并行性能的差异。
+
+尧skywalker 16:14
+
+查到结果求分享～
+
+松岩 16:17
+
+spark Hadoop是都支持java来着？
+
+尧skywalker 16:19
+
+是
+
+尧skywalker 16:19
+
+不过spark貌似倾向于scala
+
+淡水鳗鱼 16:50
+
+本科狗一枚。。专业是数学统计。。和电影制片。。。接触java半年，在努力中，希望在被大神们虐的过程中，持续成长
+
+淡水鳗鱼 16:50
+
+恩叫我 大明 就好啦。。。头像无关
+
+淡水鳗鱼 16:51
+
+以及给写这篇的大神跪了
+
+淡水鳗鱼 16:52
+
+[App message]
+
+淡水鳗鱼 16:52
+
+一直以为是长者们写的 。。。
+
+淡水鳗鱼 16:52
+
+没想到是驰神
+
+驰 17:19
+
+不是我写的
+
+驰 17:19
+
+我朋友写的，我只是最后留了几句话。。。
+
+方辰.Chen 18:48
+
+@淡水鳗鱼 电影制片的技能还在么：）
+
+淡水鳗鱼 18:49
+
+在学。。。
+
+淡水鳗鱼 18:49
+
+本科生。。。
+
+淡水鳗鱼 18:50
+
+而且制片本身也不算专门技能
+
+方辰.Chen 18:50
+
+你最终的方向是什么？
+
+淡水鳗鱼 18:51
+
+一两句好像讲不清[Joyful]介意我不说吗
+
+
+————— 2016-07-24 —————
+
+Ross Zhang 19:10
+
+希望大家follow @Spring1platform 然后retweet 这条消息[Grin]
+
+Ross Zhang 19:11
+
+感谢转发的小伙伴们
+
+尧skywalker 20:05
+
+另外想问下，为什么使用session会导致scalable的问题？。。。我们一般想从用户和服务器的联系拿到用户信息不是都需要session来拿么？。。。
+
+Chay 20:10
+
+cookie获取一些用户的行为信息
+
+Chay 20:10
+
+并非都是session吧
+
+尧skywalker 20:11
+
+我不太清楚网络底层怎么做的，但是session是可以直接在通信过程中拿来的吧，cookie你还要多一步浏览器的cookie读取啊
+
+Chay 20:14
+
+但是session这东西还是少用 毕竟有时间放在那
+
+尧skywalker 20:15
+
+为什么少用啊？。。
+
+尧skywalker 20:15
+
+时间指的是？。。timeout？
+
+Chay 20:18
+
+恩恩
+
+Chay 20:19
+
+我们项目 存在队列里面 [Grin]
+
+Chay 20:19
+
+或者redis也行
+
+尧skywalker 20:19
+
+用数据库层来做？。。。
+
+尧skywalker 20:20
+
+但是你还是需要一个机制，来判断和你服务器通信的人是谁对吧？
+
+尧skywalker 20:20
+
+难道是在所有url上加了user id之类的参数？
+
+尧skywalker 20:20
+
+所以你在后端解析call过来的get或者post时顺手拿到了user id？
+
+Chay 20:21
+
+没事啊 我请求了 我就放到mq里面 然后订阅消息 那边就去mq里面去取
+
+Chay 20:21
+
+我这边项目跟你说的一养
+
+Chay 20:21
+
+通信
+
+尧skywalker 20:22
+
+我刚才在想，你这样的话可能会在前端代码中暴露user id
+
+尧skywalker 20:22
+
+后来一想
+
+尧skywalker 20:23
+
+你可以做request之前
+
+Chay 20:23
+
+不
+
+Chay 20:23
+
+我不做前端
+
+尧skywalker 20:23
+
+从cookie里拿到对吧？
+
+Chay 20:24
+
+我们做短信 用户信息会存在mq里面 然后写有定时器 去mq里面扫描 要发短信的用户 然后~~
+
+尧skywalker 20:25
+
+那我们说的还不是一个事。。
+
+Chay 20:27
+
+你要拿到登录用的信息？
+
+尧skywalker 20:28
+
+不是登录
+
+尧skywalker 20:28
+
+比如客户端发一个请求过来
+
+Chay 20:28
+
+sorry
+
+尧skywalker 20:28
+
+我需要知道这个人是谁
+
+尧skywalker 20:28
+
+[Grin]没事～
+
+Chay 20:29
+
+然后呢
+
+Chay 20:29
+
+那就通过登录id查出信息放在缓存中
+
+尧skywalker 20:30
+
+不放在缓存里
+
+尧skywalker 20:30
+
+就是有这功能需要知道用户是谁
+
+尧skywalker 20:30
+
+登录id就是在session里吧？。。
+
+Chay 20:32
+
+不一定呀 看存不存session啦 我只校验用户名密码的话 就不存session啦
+
+尧skywalker 20:32
+
+不不
+
+尧skywalker 20:32
+
+已经过了登录那步了。。。
+
+尧skywalker 20:32
+
+比如我已经登录进去了
+
+尧skywalker 20:33
+
+这个时候我正看我个人账户的设定
+
+尧skywalker 20:33
+
+然后服务器要发回来存在数据库里的我的设定
+
+尧skywalker 20:33
+
+但是服务器需要先知道我是谁
+
+Chay 20:35
+
+那就在session里面
+
+Chay 20:35
+
+听得有些绕
+
+又困了啊喂(Austin) 20:36
+
+这个情况的的问题应该是session共用吧
+
+又困了啊喂(Austin) 20:37
+
+如果micro service引入多个系统，一个网站里可能有 asp.net，有php，有jsp，都有自己的session实现，但是互相不能共用
+
+又困了啊喂(Austin) 20:37
+
+如果单纯用cookie应该就简单很多
+
+又困了啊喂(Austin) 20:38
+
+至少in proc的应该是无法共用的吧
+
+尧skywalker 20:41
+
+那等于这种情况下完全放弃了session么？。。
+
+尧skywalker 20:41
+
+所有前后端的数据都不会通过session来传输了？
+
+Chay 20:43
+
+PHP 启动 跟Java启动一样？
+
+又困了啊喂(Austin) 20:44
+
+嗯。。前后端数据？ session主要作用就身份验证和跨页面的数据通信吧。。
+
+又困了啊喂(Austin) 20:44
+
+之前公司的做法就是把用户的信息加密放在cookie里面，每次request的时候带着，在http module层处理，去memcached里查找用户的信息，然后在handler层就得到所有的信息了，然后在controller里对需要进行验证的action都加一个attribute支持aop，这样的体验还是不错的
+
+Chay 20:45
+
+对 存在redis也行
+
+尧skywalker 20:45
+
+每次request都带着。。
+
+Chay 20:45
+
+这样效率还不错
+
+Chay 20:46
+
+直接去redis查呀
+
+尧skywalker 20:46
+
+这里用memcached的好处是是什么呢？
+
+又困了啊喂(Austin) 20:46
+
+加密的信息也很小，只带有必要的信息，具体的都从分布式缓存里取
+
+尧skywalker 20:46
+
+或者用redis
+
+又困了啊喂(Austin) 20:46
+
+跨服务器啊
+
+又困了啊喂(Austin) 20:46
+
+redis也一样啊
+
+Chay 20:47
+
+他俩一样
+
+又困了啊喂(Austin) 20:47
+
+平时不需要跨服务器的数据就用内存缓存，需要跨服务器的就用分布式缓存
+
+尧skywalker 20:47
+
+好吧我没接触过分布式。。
+
+Chay 20:48
+
+所以我现在做的是zookeeper 结合 codis 连接redis
+
+又困了啊喂(Austin) 20:48
+
+用户数据这种在各个web服务器之间都要用的，就放在redis或者memcached里，像一个城市下拉选框这种就放在各个web服务器的内存缓存里就可以
+
+尧skywalker 20:49
+
+明白了
+
+尧skywalker 20:49
+
+所以与其说是cache
+
+又困了啊喂(Austin) 20:49
+
+我之前是做.net的，我比较不理解为何java界的简历里很多都要加上zookeeper这个？ 目前我感觉我还没什么需求要用到zookeeper啊。。
+
+尧skywalker 20:49
+
+不如说是个内存里的数据库吧？
+
+尧skywalker 20:49
+
+因为感觉没有什么需要频繁读取来借助cache提高性能的地方啊。。。
+
+尧skywalker 20:50
+
+zookeeper是做个数据同步的吧？
+
+Chay 20:50
+
+差不多
+
+又困了啊喂(Austin) 20:50
+
+有啊，比如每个页面都要做用户身份验证就是利用cache提高性能了。cache是为了减轻数据库读写压力嘛
+
+Chay 20:50
+
+一台服务器挂掉了 数据会同步在其他服务器上
+
+又困了啊喂(Austin) 20:51
+
+我这段时间接触下来感觉java界几个普遍要在简历里强调的部分： zookeeper，rpc框架，gc
+
+Chay 20:51
+
+我写一个
+
+又困了啊喂(Austin) 20:51
+
+哦，还有redis[Grin]
+
+尧skywalker 20:51
+
+这几个我都没用过。。。=_=
+
+又困了啊喂(Austin) 20:52
+
+那完了，你怎么找java的工作[Chuckle]
+
+尧skywalker 20:52
+
+我已经在工作了啊。。。
+
+又困了啊喂(Austin) 20:53
+
+哈哈，开玩笑的～
+
+尧skywalker 20:53
+
+zookeeper公司在用
+
+又困了啊喂(Austin) 20:53
+
+其实我觉得看看简历，看的多了就大概知道自己应该在哪些方面多下功夫了
+
+尧skywalker 20:53
+
+但是我上研究生之前这代码就放那了我根本接触不到。。=_=
+
+尧skywalker 20:54
+
+忧愁的就是这些分布式的技术栈自己实践不好搞啊。。。
+
+尧skywalker 20:54
+
+公司又不用。。。
+
+Chay 20:54
+
+我现在正在写
+
+又困了啊喂(Austin) 20:54
+
+嗯，是啊，自己可以试试，但是和实战还是不同的，不过可以先试试，如果下次换工作别人问起来，至少你知道啊
+
+又困了啊喂(Austin) 20:55
+
+然后进去再实战咯
+
+Chay 20:55
+
+从安装到使用 整个流程
+
+尧skywalker 20:55
+
+回头先试试redis。。。
+
+Chay 20:55
+
+写好了 可以发给你看看
+
+尧skywalker 20:55
+
+@Chay 写到github上了么？
+
+Chay 20:56
+
+不 我这是服务器搭建步骤 加一些测试代码
+
+Chay 20:56
+
+只不过代码是Java的 其他语言我不知道怎么写
+
+尧skywalker 20:57
+
+话说在aws上或者
+
+尧skywalker 20:57
+
+digital ocean上
+
+尧skywalker 20:57
+
+开几个container
+
+尧skywalker 20:57
+
+能模拟分布式么？
+
+Chay 20:59
+
+我用的公司服务器 多开了几个端口
+
+Zexi Jesse Zhuang 21:30
+
+本机模拟一下分布式练习够了吧？之前学MongoDB replication sharding都是本机了解一下
+
+尧skywalker 21:31
+
+怎么做的sharding呀？
+
+尧skywalker 21:31
+
+单纯的分成俩数据库么？
+
+尧skywalker 21:32
+
+在单机上？
+
+Zexi Jesse Zhuang 21:33
+
+分布式应该也就是多一些网络传输时间吧。还有要考虑不同配置平台，还有别的么？
+
+又困了啊喂(Austin) 22:04
+
+选举，分片，容灾之类的吧，希望有大神给讲讲。大部分应该是运维的范畴吧，真的开发使用没啥好说的吧
+
+Zexi Jesse Zhuang 22:17
+
+http://jessezhuang.github.io/article/mongodb-app-engineer/#sharding-distributed-mongodb
+
+Zexi Jesse Zhuang 22:17
+
+MongoDB课sharding笔记
+
+
+————— 2016-07-25 —————
+
+胡俊锋 04:35
+
+大家视频会议有什么好的解决方案吗
+
+Chay 04:36
+
+QQ视频就欧克
+
+苏博 04:42
+
+简单的话qq视频，微信视频简单方便，想更正式些也可以考虑zoom@胡俊锋 
+
+又困了啊喂(Austin) 04:46
+
+zoom不错
+
+方辰.Chen 14:34
+
+群里有高中生，或者大一新生么
+
+尧skywalker 19:50
+
+大家做auth现在都怎么做啊？。。
+
+魏楚阳_Brian 19:58
+
+公司用的CAS，还有LDAP
+
+lym 20:06
+
+之前群里大神推荐auth0
+
+Leverage 20:06
+
+OAuth吧
+
+尧skywalker 20:06
+
+jwt么？
+
+Leverage 20:09
+
+不是的
+
+ROSS 白 20:23
+
+SSO 么？
+
+
+————— 2016-07-26 —————
+
+张小胖 10:34
+
+auth0很好用，强推
+
+张小胖 10:34
+
+我是个人项目用，公司应该用不了这个吧
+
+Weijing Jay Lin 10:34
+
+@张小胖 auth1 呢？
+
+Weijing Jay Lin 10:34
+
+好像还有 auth2?
+
+张小胖 10:36
+
+？！母鸡啊…auth0类似于一个第三方平台，提供sdk，可以接入各种平台的登陆…然后还有个类似于监控面板似的东西帮你设置，分析数据之类的…
+
+尧skywalker 10:37
+
+我好像之前表述有问题，。。
+
+尧skywalker 10:37
+
+就是不用其他平台的授权
+
+尧skywalker 10:37
+
+就是你必须在我这注册
+
+尧skywalker 10:37
+
+因为我要根据你的一些信息进行数据分析什么的
+
+Weijing Jay Lin 10:37
+
+哦，auth0 供应商，明白了
+
+Weijing Jay Lin 10:38
+
+@张小胖 有一个不好的地方在于跨国性
+
+张小胖 10:38
+
+是这样
+
+Weijing Jay Lin 10:39
+
+@张小胖 所以公司还是会用自己的 auth 工具，一般不太依赖第三方（把客户交给第三方？）
+
+Weijing Jay Lin 10:40
+
+可以用第三方工具，不用第三方平台（除非第三方有更多客户；比如 Gmail，Facebook，WeChat，QQ）
+
+张小胖 10:44
+
+嗯哪！那样数据都在别人手里，而且毕竟自己做权限大，在他的平台上会有因为他平台的功能而产生一些开发上的问题
+
+Weijing Jay Lin 10:45
+
+@张小胖 嗯，对的，对的，对方能跟上倒是也行，就是跟不上嘛... 企业往往需要一些定制开发服务的，统一化标准开发只适合入门级公司（暂时跳过，不过免不了后面的跳出）
+
+张小胖 10:57
+
+对的！自己搞一搞没啥问题～后面公司再跳出可就费劲了没准
+
+lym 11:13
+
+@尧skywalker 用其他平台做sign up和login也可以自己存储用户信息的
+
+lym 11:13
+
+理论上只有用户名密码和基本数据存在其他平台，其他的用户信息还是可以访问的
+
+尧skywalker 11:21
+
+就是我注册时还是要单独注册产品自己的用户么？
+
+尧skywalker 11:21
+
+只是登陆时可以用别的登录？
+
+lym 11:41
+
+可以用登陆时候用别的登录，比如social login
+
+lym 11:42
+
+登陆之后可以再收集其他信息，如果需要的话
+
+尧skywalker 11:43
+
+那我本地的数据库是怎么识别一个用户呢
+
+lym 11:43
+
+注册时候也可以类似
+
+lym 11:43
+
+做一个用户id的对应
+
+尧skywalker 11:44
+
+比如我支持facebook，twitter
+
+lym 11:44
+
+比如用户abc@gmail.com注册了，auth provider给一个handle，在有一个本地数据库
+
+lym 11:44
+
+是用facebook的login对吧
+
+尧skywalker 11:44
+
+那么我这一行用户的记录就除了id以外还需要单独给facebook
+
+尧skywalker 11:44
+
+开一列了
+
+尧skywalker 11:45
+
+还是不需要在我本地存储他的fb信息？
+
+lym 11:45
+
+我觉得根据需要
+
+lym 11:46
+
+fb是oauth，那个对话框不是会问你是否授权你的app访问某某fb信息么，比如用户名等等，在数据库里面以这个为primary key来保存其他的数据信息
+
+lym 11:48
+
+我个人没有用过fb的social login
+
+lym 11:49
+
+这个我文章不知道是不是你想的那种场景
+
+Jonathan Lam 11:51
+
+Oh. I got a working app with a Facebook login feature
+
+jerry y 14:08
+
+我之前是用了firebase的auth service 不知道只用firebase auth solution 可不可行。
+
+Ross Zhang 14:21
+
+Spring social should work
+
+
+————— 2016-07-27 —————
+
+尧skywalker 08:05
+
+obj真的要被swift淘汰了啊。。。
+
+改名字了的毅昭 08:56
+
+刚弃groovy排名就窜回来了情何以堪……
+
+尧skywalker 09:06
+
+VB都做什么啊
+
+尧skywalker 09:07
+
+这么高
+
+x1ang.li 09:08
+
+@改名字了的毅昭 你用groovy 做些什么事情？
+
+改名字了的毅昭 09:13
+
+写script……我不擅长bash，就用groovy代替了
+
+x1ang.li 09:15
+
+为什么不用python?
+
+x1ang.li 09:16
+
+我也不善长bash，感觉那是一门很反人类的脚本语言
+
+Jonathan Lam 10:35
+
+I am a recent graduate from York university. Is anybody here hiring any junior developers?
+
+Wenfei 10:49
+
+国内某大型公司在san jose地区招一名part time的full-stack developer，要求从业经验至少3年。Part-time, 每周20小时左右工作时间，可以在家工作。有意者希望联系我～
+
+Jonathan Lam 10:50
+
+Hmm San Jose..
+
+尧skywalker 10:51
+
+好奇哪个公司。。，
+
+Weijing Jay Lin 10:53
+
+我知道 Wenfei 那边有一家上海汽车集团的美国部门的职位:)
+
+Song 16:12
+
+有人用过nodejs的setkeepalive（）吗，我想用来探测client网络是否断了，设了下里面的参数但是没作用，网上搜了一下好像说这个函数的目的不是用来探测这个的
+
+
+————— 2016-07-28 —————
+
+Stanly 11:37
+
+spring vs guice 项目中遇到guice
+
+改名字了的毅昭 11:51
+
+Dropwizard默认是guice，结果我写的东西交给印度组不到一个月全被换成Spring了……
+
+改名字了的毅昭 11:52
+
+Spring还是比较大众一点
+
+改名字了的毅昭 11:52
+
+其实本质没区别
+
+尧skywalker 17:56
+
+想问问为什么nosql可以scalable而sql不行啊？。。
+
+又困了啊喂(Austin) 18:12
+
+可以啊
+
+又困了啊喂(Austin) 18:13
+
+mysql读写分离就是scale嘛
+
+
+————— 2016-07-29 —————
+
+艾里克 04:41
+
+是否scalable和sql或者nosql没有本质联系，主要看database engine本身的设计。就拿MySQL来说，默认的innodb因为没有sharding，只能靠一个表走到底，到了一定程度performance就出问题了；但像Mariadb或者tokudb这种engine，出现的原因就是朝着scalable去的，所以有很多特性都很好的解决规模性的问题
+
+艾里克 05:08
+
+不过就概念自身来说，最重要的还是SQL的schema不scalable，约束了太多东西，而nosql是schemaless的，整个库可以只有一套key，可想而知scalability可以去到什么程度
+
+晓 05:58
+
+nosql也不是magical,sql也不是shit，要不然oracle早倒闭了，lol
+
+晓 05:59
+
+sql没有shards,但有partition
+
+晓 06:00
+
+一个意思
+
+晓 06:02
+
+不同的query方式，底层数据存储方式是两码事
+
+尧skywalker 06:04
+
+schema不scalable是因为它需要太多join么？
+
+晓 06:04
+
+Sql语言设计更接近人的语言，nosql不是no sql,是not only sql
+
+晓 06:05
+
+没有schema是不可能的
+
+jerry y 06:06
+
+记得上一次看一个演讲 演讲人认为nosql 是not sql yet.
+
+ROSS 白 06:26
+
+Nosql 好象是not just SQL, 像 hive 也是SQL like syntax, rdbms SQL server 存储海量data没问题的
+
+晓 06:32
+
+Sql用起来多爽啊 [Grin]
+
+晓 06:34
+
+慢也是没办法，啥玩意儿被人abuse想慢都很容易
+
+ROSS 白 06:44
+
+@晓 [ThumbsUp] 我就是都用就是了， 常规的企业用户sql 比较trustful, reliable, user-friendly, 有时是慢， 还掉线[Grin]
+
+Ross Zhang 06:45
+
+强调consistency的时候rdbms 还是有点优势的
+
+艾里克 07:13
+
+schema和范式都不是盖的，只是时代不一样了，每天几十上百个billions的transactions去强调完整性和一致性就有点太那个了，除了和钱打交道的东西，估计都可以改nosql了，就算如此，各大nosql engine到最后为了讨好开发者还是要穿一件类sql的查询外套
+
+ROSS 白 07:19
+
+Web log process, 计算 trend , 这些就 nosql, 重要的客户data等, 就 rdbms sql
+
+艾里克 07:31
+
+一些成熟的nosql产品，运维的套件也相当不错了，所以客户的data也不一定需要保存在rdbms了，现在还没改朝换代，主要是更换的成本太高，大企业们被db2，oracle等绑的太死了，哈哈
+
+艾里克 07:32
+
+现在起步的公司，真不晓得还有多少人去主动选择rdbms
+
+x1ang.li 07:36
+
+有的，国内的startup 公司，很多真的在用RDBMS，而且，还不是用的mysql/mssql，而是一上来就上oracle！
+
+艾里克 07:37
+
+牛！不用付费？
+
+x1ang.li 07:37
+
+原因在于，国内很多公司，不愿意在IT上花钱招人，一般就招一些大专或三本毕业培训学校的屌丝程序员，然后这些屌丝程序员在学校里都学的是Oracle。甚至，包括一些像华为这样的公司，用的也是Oracle。
+
+x1ang.li 07:39
+
+他们眼中，Oracle稳定，快，可靠，非常迷信Oracle。一线程序员的眼界竟然和50岁的国企老总一样，我也是醉了。但你还别说，这就是国内现实……而且更可笑的是，他们当中绝大多数，连“oracle”这个音都发不准。
+
+x1ang.li 07:40
+
+我回国以后，遇到的奇事不少 考大家一个简单的：很多国内培训学校出来的简历上会写着"SSH"，请问SSH是什么？
+
+尧skywalker 07:43
+
+struts spring hibernate
+
+尧skywalker 07:44
+
+不过很实际啊
+
+尧skywalker 07:44
+
+nosql你招不到人
+
+尧skywalker 07:45
+
+sql你一抓一大把
+
+x1ang.li 07:45
+
+Correct, rather than "SSH登录"
+
+尧skywalker 07:45
+
+刚起步就想着未来用户几千万我觉得也不现实
+
+尧skywalker 07:45
+
+struts貌似现在用的少了
+
+Chay 07:45
+
+不少
+
+尧skywalker 07:45
+
+但是后俩现在依然坚挺啊
+
+尧skywalker 07:45
+
+活跃度也高
+
+Chay 07:46
+
+hibernate用的少
+
+Chay 07:46
+
+都用ssm啦
+
+尧skywalker 07:46
+
+hvm用的很多吧。。。。
+
+尧skywalker 07:46
+
+hbm
+
+Chay 07:47
+
+不
+
+尧skywalker 07:47
+
+=_=确实用的多啊。。。
+
+x1ang.li 07:47
+
+tricky的在于：由于HR只能通过关键字招人。所以为了减少招人环节的时间成本，我们只招那些会NoSQL的。虽然最后实际的项目可能只让新人写SQL，但我们还是招会NoSQL的。这么做的目的就是用一种简单的方法过滤掉那些不会自学的屌丝程序员。
+
+尧skywalker 07:48
+
+struts我才是没见多少企业现在还在用。。。
+
+x1ang.li 07:48
+
+而且国内的程序员是不会在面试环节中做题的。你让他做题，他会走掉……
+
+x1ang.li 07:48
+
+struts的确用得很少，但是国内的培训学校清一水地教……
+
+Chay 07:48
+
+也是 现在都用springmvc啦
+
+尧skywalker 07:48
+
+也别把国内程序员一概而论了。。。高等教育学府出来的大神还是很多的
+
+Chay 07:48
+
+mybatis
+
+Chay 07:49
+
+用的比较多
+
+尧skywalker 07:49
+
+我这五五开。。。
+
+Chay 07:49
+
+是的 我们技术老大 也是这样
+
+尧skywalker 07:49
+
+我感觉用hibernate的还是很多
+
+x1ang.li 07:49
+
+我们自己就是国内高等学府出来的，我朋友更是国内高等学府出来的大神，但是我们普遍只能招到屌丝程序员。都不知道好的程序员上哪儿去了
+
+Chay 07:49
+
+hibernate太死了 没有mybatis灵活
+
+尧skywalker 07:50
+
+不是太死
+
+Chay 07:50
+
+@x1ang.li 钱给到位就找到了
+
+尧skywalker 07:50
+
+是你要花时间学习调优
+
+尧skywalker 07:50
+
+成本高
+
+尧skywalker 07:50
+
+但是不代表做不到。。
+
+x1ang.li 07:51
+
+@Chay 怎么算到位？呵呵。年薪一百万算到位不？那我同意你说的
+
+Chay 07:51
+
+知道中移动集团 中石油 这边互联网 我都用mybatis
+
+艾里克 07:51
+
+用什么不是关键，但起码要给个理由为什么用吧？能说明白的，基本都可以自己写一套了
+
+Chay 07:51
+
+100确实招不到
+
+Chay 07:51
+
+那种码神很少
+
+尧skywalker 07:51
+
+美国这边用hibernate的还是很多的。。。
+
+Chay 07:52
+
+不知道
+
+Chay 07:52
+
+我喜欢写SQL
+
+Chay 07:52
+
+不过hibernate也行
+
+尧skywalker 07:52
+
+我记得之前ross大神讲座时
+
+尧skywalker 07:52
+
+我还问过这个问题
+
+尧skywalker 07:52
+
+orm的选择问题
+
+Chay 07:52
+
+各有所爱吧
+
+x1ang.li 07:53
+
+年薪100万，相当于美国年薪15万美元。这在东部或者texas能招到不错的了
+
+Chay 07:53
+
+不过最近我一直做大数据处理
+
+x1ang.li 07:53
+
+国内年薪100万的水平，不见得比美国15万美元的水平强。这个市场很乱
+
+Chay 07:53
+
+美国那边工资高 15万美刀 能找个一般的程序猿吧
+
+尧skywalker 07:54
+
+主要是你说的大神程序员指什么呢？。。
+
+x1ang.li 07:54
+
+15万USD招的人的素质，不见得比国内100万人民币的差。国内100万人民币的，一般是混得好的早年跟在BAT顺风车上的。真正的大神反倒拿不到100万。
+
+x1ang.li 07:54
+
+就比如，百度150万的人，也就是刘X那个水平。
+
+x1ang.li 07:54
+
+所以钱多不见得能找到大神。
+
+尧skywalker 07:55
+
+某个领域知识丰富
+
+尧skywalker 07:55
+
+还是计算机素养高？
+
+Chay 07:55
+
+对 真正大神拿不到100万
+
+尧skywalker 07:55
+
+还是数据结构算法玩的好？
+
+Chay 07:55
+
+你们在国外怎么样
+
+Chay 07:56
+
+喜欢写ssm喜欢写sql 现在基本摸不到 天天写后台 写点脚本
+
+尧skywalker 07:58
+
+国内是不是startup创业环境要难很多啊。。。
+
+尧skywalker 07:58
+
+我感觉国内市场也有，人才也有
+
+尧skywalker 07:58
+
+怎么感觉startup都很难生存的样子
+
+Chay 07:59
+
+我就在创业
+
+Chay 07:59
+
+你以为很简单 真的好困难好困难
+
+x1ang.li 07:59
+
+国内市场也有，人才也有 ____ 你看起来有，有的确是有，但是是在外面的，是别人的，不是属于自己的startup的
+
+Chay 07:59
+
+接个项目 那点钱 客户都扣的不行
+
+Chay 08:00
+
+互联网
+
+x1ang.li 08:00
+
+所以在创业的时候，看到别人的员工都很牛，都很卖力；自己的员工当一天和尚撞一天钟
+
+x1ang.li 08:00
+
+“接个项目 那点钱 客户都扣的不行”——太对了
+
+x1ang.li 08:00
+
+能拖款就拖款，能少付就少付，总是要找理由欠款。
+
+Chay 08:01
+
+还不能得罪他们
+
+尧skywalker 08:01
+
+所以还是跟行业制度和行业法规有关？
+
+Chay 08:02
+
+我一个朋友在海尔 200多人的公司 京东周六撤资 周一公司宣布倒闭
+
+x1ang.li 08:02
+
+然后等你反过来做采购方的时候，你就会发现：上游那些公司或者外包公司，一个个不靠谱。明明你已经给了他们全款，他们还不干活。
+
+Chay 08:02
+
+拿钱的都是大爷
+
+尧skywalker 08:02
+
+外包公司真是。。。
+
+尧skywalker 08:03
+
+还是行业从事者素养低吧
+
+Ross Zhang 08:30
+
+@尧skywalker hibernate 和mybatis 都可以，不过不能完全依赖ORM generate SQL. 还有注意lazy loading. 讲座时候我讲过想要更好的performance 可能需要caching layer. 比如redis或者memcached ,
+
+@Ross Zhang [ThumbsUp]
+
+ORM的performance不是一般地差。我们之前做过benchmarking。用hibernate执行一个一般的select/insert，效率比用JDBC差了一个数量级不止，10倍以上！ 当时特别郁闷，手写SQL是程序员们最不愿意做的事情之一
+
+Ross Zhang 08:33
+
+@x1ang.li 国内100万是不是基本都在BAT? 不知道创业公司能给这么高吗？
+
+x1ang.li 08:33
+
+明显给不了啊
+
+尧skywalker 08:33
+
+我觉得得看你怎么用啊， 问题在于hibernate生成的sql跟你自己写的都不一样啊
+
+尧skywalker 08:33
+
+你可能只想要一个具体primitive tyoe
+
+x1ang.li 08:33
+
+100万是打比方，甚至BAT也给不了。
+
+尧skywalker 08:34
+
+hbm去join了其他表拿到了更多东西
+
+Ross Zhang 08:34
+
+100万应该包括期权股票了
+
+尧skywalker 08:34
+
+这是你没lazy loading的问题啊。。
+
+Ross Zhang 08:34
+
+Join就自己写吧我觉得
+
+Ross Zhang 08:34
+
+Hibernate is pulling the whole universe
+
+尧skywalker 08:35
+
+是，我之前也是遇到了orm的性能问题所以讲座时问的
+
+尧skywalker 08:35
+
+但是我感觉这还是因为我自己用的不好以及在不该用的地方用。。。
+
+Ross Zhang 08:36
+
+这个确实需要很多经验
+
+Ross Zhang 08:36
+
+我也是犯了很多错误
+
+Ross Zhang 08:36
+
+总结出来一些东西
+
+尧skywalker 08:37
+
+而且他那个多级缓存我也不会。。=_=
+
+晓 08:53
+
+听起来像个坑
+
+艾里克 08:56
+
+绝对的坑！！build from scratch的时候，用hibernate都是能map的就map，能关联的就关联，然后数据容量一起来以后，各种坑。然后就开始不断的减少关联，lazy loading，再不行就把object改字段关联，都是血的教训
+
+尧skywalker 08:57
+
+orm关联越多意味着底层join越多啊。。
+
+艾里克 09:04
+
+就是因为关联的成本太低了，写SQL你还要outer join，用hibernate就一个annotation，多几个objects以后搞不好就变成circle了，我试过生产环境一个Query产生了300M的sql log
+
+尧skywalker 09:05
+
+所以我感觉orm和纯sql就是一个互补互搭的问题。。。看你怎么用，不存在哪个东西能替代哪个的问题。。
+
+艾里克 09:06
+
+我当时也呆了，就是因为双向关联……
+
+尧skywalker 09:06
+
+orm当初不也是为了解决程序员写sql痛苦才出现的么。。=_=感觉世道循环的样子
+
+尧skywalker 09:06
+
+nosql到sql，然后 nosql又火了
+
+lym 09:06
+
+学习中～orm没怎么用过sql也玩不转的飘过
+
+x1ang.li 09:07
+
+@艾里克 后来怎么办的？手写sql?
+
+尧skywalker 09:07
+
+前端之前嚷着html和js分离，然后现在react，ng又把html和js揉一块了。。
+
+改名字了的毅昭 09:08
+
+不来回变，项目经理们怎么要funding?
+
+艾里克 09:09
+
+呵呵，就像上边说过的，要不断一边的关联，要不把原来object的关联换成字段的，其实理论上业务总是倾向于其中一边的，如果确实存在另一边的case，就写多一个Query咯
+
+改名字了的毅昭 09:11
+
+其实有时候只是设计的时候normalization做的太过了………
+
+改名字了的毅昭 09:12
+
+Over engineered DB
+
+艾里克 09:14
+
+就是因为关联的成本太低，日积月累没人在意，等出现问题的时候，才发现
+
+尧skywalker 09:15
+
+关键成本低是代码成本低吧
+
+改名字了的毅昭 09:21
+
+就是说本来大家出去吃饭不那么方便所以比较省，现在给个外卖的选项点餐行为的成本太低，结果天天叫外卖，月底发现月光了的赶脚吗？
+
+x1ang.li 09:23
+
+不是 比这个还惨 相当于要把之前吃的外卖吐出来再出去吃
+
+尧skywalker 09:25
+
+=_=没这么不济吧。。。
+
+x1ang.li 09:26
+
+相当于之前的orm代码无用，所有的都要慢慢写sql, 难道不是吗
+
+尧skywalker 09:27
+
+很多东西你可以不用重写的啊
+
+尧skywalker 09:27
+
+你把配置里的show sql打开
+
+尧skywalker 09:27
+
+然后加一些lazy之类的config
+
+x1ang.li 09:27
+
+好吧，good point
+
+尧skywalker 09:27
+
+可以对比一下跟你手写的sql的
+
+尧skywalker 09:28
+
+加了lazy很多就不去join了的
+
+尧skywalker 09:28
+
+而且现在纯jdbc怎么防sql injection？还是用preparedstatement吗？
+
+Kaneki 09:40
+
+现在还有纯jdbc的嘛。
+
+ROSS 白 09:45
+
+纯 jdbc conn, escape 掉哪些 special characters 就OK了吧
+
+尧skywalker 09:48
+
+这样能防么？。。。
+
+尧skywalker 09:49
+
+我觉得用正则不是很安全啊。。
+
+改名字了的毅昭 10:15
+
+还是用JDBI吧
+
+lym 10:23
+
+我一直用spring 的jdbctemplate 感觉还不错
+
+改名字了的毅昭 10:26
+
+Spring的template系列都还不错。不过如果不准备引入Spring这个巨大的Ecosystem的话……
+
+改名字了的毅昭 10:29
+
+像Dropwizard这样特别轻的Framework用起来也很舒服，当然如果已经有Spring作为dependency的话还是放开用Spring了^_^
+
+王科 10:35
+
+据说jooq能防injection？
+
+改名字了的毅昭 10:41
+
+最近听JOOQ挺多了，但还没用过。谁用过？
+
+lym 10:44
+
+@改名字了的毅昭 spring 巨大是指体积大，还是复杂呀
+
+尧skywalker 10:45
+
+ecosystem大
+
+尧skywalker 10:45
+
+天上地下
+
+改名字了的毅昭 10:45
+
+是指库多，每个jar都不大，但是依赖来依赖去，一抓一大堆jar
+
+改名字了的毅昭 10:46
+
+多了就怕版本冲突
+
+王科 10:46
+
+我用jooq
+
+改名字了的毅昭 10:47
+
+听说jooq读方面特别强。写怎么样？
+
+
+————— 2016-07-30 —————
+
+lym 12:28
+
+我这有一个比较奇怪的需求
+
+lym 12:28
+
+现在有一个spring boot的web app
+
+lym 12:29
+
+没有复杂的技术，就是读写数据库，提供rest api
+
+lym 12:29
+
+如果要是用一门非java语言重写一下，大家有什么建议么
+
+晓 12:47
+
+Php
+
+驰 12:48
+
+世界最好的语言
+
+晓 13:10
+
+[App message]
+
+lym 13:50
+
+谢谢大家我来研究一下
+
+Weijing Jay Lin 14:02
+
+为何不用 NodeJS？不过我也是比较熟 PHP 的...疑问的是 NodeJS 不是很火吗--？@晓
+
+lym 14:03
+
+哦对了，我现在的java项目里面有一个dependency jar，在别的语言里面没有，这种情况有解决办法么
+
+lym 14:03
+
+就是主要用别的语言，但是somehow还用那个jar处理dependency
+
+晓 15:25
+
+@Weijing Jay Lin nodejs更好[Grin]
+
+x1ang.li 20:33
+
+有没有比较好的log方案？Flume怎么样？
+
+胡俊锋 20:34
+
+挺牛的
+
+x1ang.li 20:36
+
+Flume有哪些同类？
+
+胡俊锋 20:37
+
+一般不都是elk吗
+
+x1ang.li 20:38
+
+恩，我对这块不熟，谢大咖指点
+
+hotsport 21:44
+
+flume kafka spark需要开发，elk配置就行了
